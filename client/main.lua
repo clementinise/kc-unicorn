@@ -197,8 +197,6 @@ Citizen.CreateThread(function()
 
 	for _ in pairs(Config.Strippers) do CustomStrippers = CustomStrippers + 1 end
 
-	print(CustomStrippers)
-
 	if Config.Framework == "Standalone" then
 		text = Loc('StandaloneLapText')
 	end
@@ -217,10 +215,10 @@ Citizen.CreateThread(function()
     while true do
 
 		if Config.SelectStrippers then
-			if Stripper > Config.CustomStrippers then
+			if Stripper > CustomStrippers then
 				Stripper = 1
 			elseif Stripper <= 0 then
-				Stripper = Config.CustomStrippers
+				Stripper = CustomStrippers
 			end
 			DrawnText = Input .. text .. InputLeft .. Config.Strippers[Stripper].Name .. InputRight
 		else
