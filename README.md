@@ -9,7 +9,8 @@
 * Lean at the poledance area to throw some cash at the strippers
 * Strip-Club Blip at the Unicorn
 * Lap dance and pole dance marker
-* Choose between different framework, `qbcore` is set by default. [standalone, [esx](https://github.com/esx-framework/es_extended/tree/v1-final), [qb-core](https://forum.cfx.re/t/qbcore-framework/4116674)]
+* Choose between different framework, `standalone` is set by default. [standalone, [esx](https://github.com/esx-framework/es_extended/tree/v1-final), [qb-core](https://forum.cfx.re/t/qbcore-framework/4116674)]
+* Multiple ways to display the text at all markers (`Config.Text`)
 * Update Checker and changelog if new update found directly in console on resource start, except if [`fivem-checker`](https://github.com/clementinise/fivem-checker) is installed and running on your server
 * Run at 0.00ms (0.08%) on idle and 0.03ms when in lap dance (Max reach was 0.07ms)
 * Check for players already in a lap dance to avoid conflict or dupe
@@ -19,6 +20,8 @@
 ## qb-lapdance is heavily configurable: 
 * **Config.Framework**
 Choose which framework your server is using so qb-lapdance can work with it [standalone, [esx](https://github.com/esx-framework/es_extended/tree/v1-final), [qb-core](https://forum.cfx.re/t/qbcore-framework/4116674)]
+* **Config.Text**
+2D, 3D, Better3D, None (Set the one you like to suit your server, the performance difference is mostly non-existant)
 * **Config.LapDanceCost**
 Set the cost of the lap dance
 * **Config.ThrowCost**
