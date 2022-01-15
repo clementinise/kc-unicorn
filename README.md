@@ -59,10 +59,14 @@ Some new features will be added soon: ~~Being able to use the 7 seats and not on
 
 **Preview:** [Coming Soon]()
 
-### Installation
+## Installation
+
+### Requirement
+* [PolyZone](https://github.com/mkafrin/PolyZone)
+
 Download the [latest release](https://github.com/clementinise/kc-unicorn/releases/latest).
 
-Drag the folder into your `<server-data>/resources/[qb]` folder Add this in your `server.cfg`:
+Drag the folder into your `<server-data>/resources/` folder Add this in your `server.cfg`:
 
 ```
 start kc-unicorn
