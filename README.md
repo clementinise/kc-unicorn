@@ -45,7 +45,7 @@ Set to true if you want to let your player choose which stripper they want for t
 * **Config.Strippers**
 List of available strippers for the lapdance
 * **Config.Language**
-Set the language variable that will be used for the locale system. For now, qb-lapdance has translation in French and English (fr or en), but you can easily create your own translation!
+Set the language variable that will be used for the locale system. For now, kc-unicorn has translation in French and English (fr or en), but you can easily create your own translation!
 * **Config.UpdateChecker**
 Set to false if you don't want to check for qb-lapdance update on start
 * **Config.ChangeLog**
