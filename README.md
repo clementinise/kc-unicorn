@@ -1,6 +1,6 @@
 # kc-unicorn [![Release](https://img.shields.io/badge/Release-V%201.0-blue)](https://github.com/clementinise/kc-unicorn/releases/latest)
 
-**Bring life & interactions to the Unicorn Club - [cfx.re forum link]()** 
+**Bring life & interactions to the Unicorn Club - [cfx.re forum link](https://forum.cfx.re/t/release-unicorn-club-script-kc-unicorn-v1-0-free/4802992)** 
 
 ### This resource use [FiveM-checker](https://github.com/clementinise/fivem-checker), created to easily keep track if a resource need to be updated!
 
@@ -15,7 +15,7 @@
 * Run at 0.00ms (0.08%) on idle and 0.03ms when in lap dance (Max reach was 0.07ms)
 * Check for players already in a lap dance to avoid conflict or dupe
 * Proper locale system with French and English language already included
-* If you run into any issue with this resource, just set 'Config.Debug' to true, it will print some debug logs in the client console. You can then send them [here]().
+* If you run into any issue with this resource, just set 'Config.Debug' to true, it will print some debug logs in the client console. You can then send them [here](https://forum.cfx.re/t/release-unicorn-club-script-kc-unicorn-v1-0-free/4802992).
 
 ## kc-unicorn is heavily configurable: 
 * **Config.Framework**
