@@ -17,7 +17,7 @@
 * Proper locale system with French and English language already included
 * If you run into any issue with this resource, just set 'Config.Debug' to true, it will print some debug logs in the client console. You can then send them [here]().
 
-## qb-lapdance is heavily configurable: 
+## kc-unicorn is heavily configurable: 
 * **Config.Framework**
 Choose which framework your server is using so qb-lapdance can work with it [standalone, [esx](https://github.com/esx-framework/es_extended/tree/v1-final), [qb-core](https://forum.cfx.re/t/qbcore-framework/4116674)]
 * **Config.Text**
