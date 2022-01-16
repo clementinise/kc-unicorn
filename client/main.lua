@@ -71,7 +71,7 @@ local leanPoly3 = BoxZone:Create(vector3(110.98, -1284.24, 28.26), 0.2, 2.5, {
 })
 
 -- Create Blips
-Citizen.CreateThread(function()	
+Citizen.CreateThread(function()
 	LoadDict("mini@strip_club@pole_dance@pole_dance1", false)
 	LoadDict("mini@strip_club@pole_dance@pole_dance2", false)
 
@@ -791,6 +791,15 @@ end
 ---- ????
 
 
+RegisterNetEvent('kc-unicorn:poledancescene')
+AddEventHandler('kc-unicorn:poledancescene', function(ped, number)
+	PedPole = NetworkGetEntityFromNetworkId(ped)
+	local scene = NetworkCreateSynchronisedScene(vector3(112.65, -1286.74, 28.5), vector3(0.0, 0.0, 0.0), 2, false, false, 1065353216, 0, 1.3)
+	NetworkAddPedToSynchronisedScene(PedPole, scene, 'mini@strip_club@pole_dance@pole_dance'..number, 'pd_dance_0'..number, 1.5, -4.0, 1, 1, 1148846080, 0)
+	NetworkStartSynchronisedScene(scene)
+	Citizen.Wait(30000)
+	TriggerServerEvent('kc-unicorn:poledancestop')
+end)
 
 
 --------
