@@ -4,7 +4,9 @@ local GithubL, Changelog, QBCore, inPoleDance
 local Version = GetResourceMetadata(GetCurrentResourceName(), 'version', 0) -- Do Not Change This Value
 local Github = GetResourceMetadata(GetCurrentResourceName(), 'github', 0)
 local Updater = false
+local INPOLEDANCE = false
 local PedNumber = 2
+local PoledancePed1, PoledancePed2
 
 -- Server Seat Locales
 local GetPlayerSeated = 0
@@ -90,17 +92,17 @@ function UpdateChecker()
     
     print('')
     if Config.Framework == 'QBCore' then
-        print('^8QBCore ^6Lap Dance resource ('..GetCurrentResourceName()..')')
+        print('^8QBCore ^6KC Unicorn Script ('..GetCurrentResourceName()..')')
     elseif Config.Framework == 'Standalone' then
-        print('^9Standalone ^6Lap Dance resource ('..GetCurrentResourceName()..')')
+        print('^9Standalone ^6KC Unicorn Script ('..GetCurrentResourceName()..')')
     elseif Config.Framework == 'ESX' then
-        print('^3ESX ^6Lap Dance resource ('..GetCurrentResourceName()..')')
+        print('^3ESX ^6KC Unicorn Script ('..GetCurrentResourceName()..')')
     end
-    if Version == NewestVersion then
+    if Version == Version1 then
         print('^2Version ' .. Version .. ' - Up to date!')
     else
         print('^1Version ' .. Version .. ' - Outdated!')
-        print('^1New version: v' .. NewestVersion)
+        print('^1New version: v' .. Version1)
         if Config.ChangeLog then
             print('\n^3Changelog:')
             print('^4'..Changelog..'\n')
@@ -123,6 +125,7 @@ Citizen.CreateThread(function()
 
 	SetPedComponentVariation(PoledancePed2, 8, 0)
 	SetPedComponentVariation(PoledancePed1, 8, 0)
+
     
     repeat
         inPoleDance = true
@@ -158,14 +161,11 @@ function PoleDance(Ped)
         local poledist = #(PedCoo - vector3(112.27, -1287.22, 28.46))
         local dict = "mini@strip_club@pole_dance@pole_dance"..PedNumber
         if poledist < 0.4 then
-            SetEntityCoords(Ped, vector3(112.61, -1287.02, 27.46))
-            TaskPlayAnim(Ped, dict, "pd_dance_0"..PedNumber, 8.0, -8.0, -1, 0, 0, false, false, false)
-            Citizen.Wait(1000)
-            --[[ while true do
-                Citizen.Wait(100)
-                Test = Test + 0.1
-                print(Test)
-            end ]]
+            INPOLEDANCE = true
+            TriggerClientEvent('kc-unicorn:poledancescene', -1, NetworkGetNetworkIdFromEntity(Ped), PedNumber)
+            repeat
+                Citizen.Wait(200)
+            until INPOLEDANCE == false
             inPoleDance = false
         end
         Citizen.Wait(10)
@@ -385,5 +385,18 @@ AddEventHandler('kc-unicorn:NoPlaceAvailable', function()
     Player.Functions.AddMoney("cash", Cost)
     TriggerClientEvent('QBCore:Notify', src, Loc('AllPlacesTaken'), "error", 1700)
 
+
+end)
+
+AddEventHandler('onResourceStop', function()
+    DeleteEntity(PoledancePed1)
+    DeleteEntity(PoledancePed2)
+    print("Ped succesfully deleted")
+  end)
+
+RegisterServerEvent('kc-unicorn:poledancestop')
+AddEventHandler('kc-unicorn:poledancestop', function()
+	
+    INPOLEDANCE = false
 
 end)
