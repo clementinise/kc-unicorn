@@ -1,5 +1,8 @@
 -- Import QBCore
-local QBCore = exports['qb-core']:GetCoreObject()
+local QBCore
+if Config.Framework == "QBCore" then
+	QBCore = exports['qb-core']:GetCoreObject()
+end
 
 Cache = {}
 
@@ -24,7 +27,7 @@ local Seat5Taken = false
 local Seat6Taken = false
 local Seat7Taken = false
 
-local SpawnObject, PreviousCamViewMode, factor, lines
+local SpawnObject, PreviousCamViewMode, factor, lines, PlayerMoney
 
 -- PolyZones
 local uniPoly = BoxZone:Create(vector3(115.01, -1293.19, 28.27), 25.1, 32.0, {
@@ -241,9 +244,6 @@ Citizen.CreateThread(function()
 					if PlayerSeated >= 7 then
 						QBCore.Functions.Notify(Loc('AllPlacesTaken'), "error")
 					else
-						Cache.InLapdance = true
-						TriggerServerEvent('kc-unicorn:active')
-						Citizen.Wait(200)
 						TriggerServerEvent('kc-unicorn:buy', Stripper)
 						Citizen.Wait(500)
 					end
@@ -377,6 +377,7 @@ AddEventHandler('kc-unicorn:lapdance', function(PlayerMoney, PlayerBirthdate, To
 	Birthdate = {}
 	Date = {}
 	Cache.lapStop = false
+	Cache.InLapdance = true
 	PreviousCamViewMode = GetFollowPedCamViewMode(Cache.Player)
 
 	if Config.Framework == 'QBCore' then
@@ -730,7 +731,6 @@ function LeanStart(PlyHeading)
 	TaskPlayAnim(Cache.Player, LoadDict("mini@strip_club@leaning@base", true), "base" .. is_female(), 8.0, -8.0, -1, 1, 0, false, false, false)
 
 	while true do
-		local PlayerMoney = nil
 		Wait(0)
 
 		DrawText2D(text)
@@ -739,10 +739,13 @@ function LeanStart(PlyHeading)
 				PlayerData = QBCore.Functions.GetPlayerData()
 				PlayerMoney = PlayerData.money["cash"]
 			elseif Config.Framework == "ESX" then
-				PlayerMoney = xPlayer.getAccount("cash").money 
+				TriggerServerEvent('kc-unicorn:esxmoney')
 			elseif Config.Framework == "Standalone" then
 				PlayerMoney = Config.ThrowCost + 1
 			end
+			repeat
+				Citizen.Wait(100)
+			until PlayerMoney ~= nil
 			if Config.Debug then
 				print("Player money: " .. PlayerMoney, "Throw cost: " .. Config.ThrowCost)
 			end
@@ -772,7 +775,11 @@ function LeanStart(PlyHeading)
 				TaskPlayAnim(Cache.Player, LoadDict("mini@strip_club@leaning@base", true), "base" .. is_female(), 8.0, -8.0, -1, 1, 0, false, false, false)
 
 			else
-				QBCore.Functions.Notify('NotEnoughCashLean', "error")
+				if Config.Framework == 'QBCore' then
+					QBCore.Functions.Notify(Loc('NotEnoughCashLean'), "error")
+				else
+					TriggerEvent('kc-unicorn:showNotify', Loc('NotEnoughCashLean'))
+				end
 			end
 		elseif IsControlJustReleased(0, 51) then
 			break
@@ -826,3 +833,8 @@ Citizen.CreateThread(function()
 end)
 
 --------
+
+RegisterNetEvent('kc-unicorn:esxplayermoney')
+AddEventHandler('kc-unicorn:esxplayermoney', function(money)
+	PlayerMoney = money
+end)
