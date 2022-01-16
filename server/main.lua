@@ -1,5 +1,4 @@
-ESX = nil
-local GithubL, Changelog, QBCore, inPoleDance
+local GithubL, Changelog, ESX, QBCore, inPoleDance
 
 local Version = GetResourceMetadata(GetCurrentResourceName(), 'version', 0) -- Do Not Change This Value
 local Github = GetResourceMetadata(GetCurrentResourceName(), 'github', 0)
@@ -217,10 +216,10 @@ AddEventHandler('kc-unicorn:buy', function(Stripper)
                     TriggerClientEvent('esx:showNotification', src, Loc('BoughtLapdance', Config.LapDanceCost))
                     TriggerClientEvent('kc-unicorn:lapdance', src, PlayerMoney, PlayerBirthdate, TodayDate, Stripper)
                 else
-                    TriggerClientEvent('QBCore:Notify', src, Loc('StripperActive'), "error", 1700)
+                    TriggerClientEvent('esx:showNotification', src, Loc('StripperActive'))
                 end
             else
-                TriggerClientEvent('QBCore:Notify', src, Loc('NotEnoughMoney', Config.LapDanceCost), "error", 1700)
+                TriggerClientEvent('esx:showNotification', src, Loc('NotEnoughMoney', Config.LapDanceCost))
             end
         end
 
@@ -259,6 +258,19 @@ AddEventHandler('kc-unicorn:leanthrow', function()
         Player.removeMoney(Cost)
 
     end
+end)
+
+-- Lean ESX Get Money
+RegisterServerEvent('kc-unicorn:esxmoney')
+AddEventHandler('kc-unicorn:esxmoney', function()
+
+    local src = source
+    local Player = ESX.GetPlayerFromId(src)
+    Cost = Config.LapDanceCost
+    PlayerMoney = Player.getMoney()
+    
+    TriggerClientEvent("kc-unicorn:esxplayermoney", src, PlayerMoney)
+
 end)
 
 RegisterServerEvent('kc-unicorn:SyncLapDanceSpawn')
