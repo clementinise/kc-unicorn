@@ -1,4 +1,4 @@
-# kc-unicorn [![Release](https://img.shields.io/badge/Release-V%201.0-blue)](https://github.com/clementinise/kc-unicorn/releases/latest)
+# kc-unicorn [![Release](https://img.shields.io/badge/Release-V%201.1-blue)](https://github.com/clementinise/kc-unicorn/releases/latest)
 
 **Bring life & interactions to the Unicorn Club - [kc-unicorn on cfx.re forum](https://forum.cfx.re/t/release-unicorn-club-script-kc-unicorn-v1-0-free/4802992)** 
 
