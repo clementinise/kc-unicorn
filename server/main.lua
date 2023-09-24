@@ -401,7 +401,7 @@ AddEventHandler('kc-unicorn:NoPlaceAvailable', function()
 end)
 
 AddEventHandler('onResourceStop', function(res)
-    if res ~= GetCurrentResourceName() then end
+    if res ~= GetCurrentResourceName() then return end
     
     if PoledancePed1 ~= nil then
         DeleteEntity(PoledancePed1)
