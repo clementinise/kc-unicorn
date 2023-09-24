@@ -400,11 +400,17 @@ AddEventHandler('kc-unicorn:NoPlaceAvailable', function()
 
 end)
 
-AddEventHandler('onResourceStop', function()
-    DeleteEntity(PoledancePed1)
-    DeleteEntity(PoledancePed2)
-    print("Ped succesfully deleted")
-  end)
+AddEventHandler('onResourceStop', function(res)
+    if res ~= GetCurrentResourceName() then return end
+    
+    if PoledancePed1 ~= nil then
+        DeleteEntity(PoledancePed1)
+    end
+
+    if PoledancePed2 ~= nil then
+        DeleteEntity(PoledancePed2)
+    end
+end)
 
 RegisterServerEvent('kc-unicorn:poledancestop')
 AddEventHandler('kc-unicorn:poledancestop', function()
